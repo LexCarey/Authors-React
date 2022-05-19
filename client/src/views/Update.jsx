@@ -12,7 +12,10 @@ const Update = () => {
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/authors/${id}`)
         .then(res => {
-                setAuthor(res.data.name)
+            if (!res.data._id) {
+                navigate('/error')
+            }
+                setAuthor(res.data)
         })
         .catch(err => console.log(err))
     }, [])
@@ -43,12 +46,10 @@ const Update = () => {
             <h3 style={{color: "purple"}}>Edit this Author:</h3>
             {
                 author&&
-                <AuthorForm submit={submitHandler} errors={errors} propsName={author} />
+                <AuthorForm submit={submitHandler} errors={errors} propsName={author.name} />
             }
         </div>
     )
 }
 
 export default Update
-
-//<h3>We're sorry, but we could not find the author you are looking for. Would you like to <Link to="/new">add this author</Link> to our database?</h3>
