@@ -14,11 +14,7 @@ const DeleteButton = (props) => {
         .catch(err => console.log(err))
     }
 
-    return (
-    <div>
-        <button className='btn btn-danger' onClick={() => deleteAuthor(id)}>Delete</button>
-    </div>
-    )
+    return <button className='btn btn-danger' onClick={() => deleteAuthor(id)}>Delete</button>
 }
 
 export default DeleteButton
