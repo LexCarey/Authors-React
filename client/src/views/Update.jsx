@@ -5,7 +5,6 @@ import AuthorForm from '../components/AuthorForm'
 
 const Update = () => {
     const [author, setAuthor] = useState()
-    const [loaded, setLoaded] = useState(false)
     const [errors, setErrors] = useState([])
     const { id } = useParams()
     const navigate = useNavigate()
@@ -14,7 +13,6 @@ const Update = () => {
         axios.get(`http://localhost:8000/api/authors/${id}`)
         .then(res => {
                 setAuthor(res.data.name)
-                setLoaded(true)
         })
         .catch(err => console.log(err))
     }, [])
@@ -44,7 +42,7 @@ const Update = () => {
             <h3><Link to="/">Home</Link></h3>
             <h3 style={{color: "purple"}}>Edit this Author:</h3>
             {
-                loaded&&
+                author&&
                 <AuthorForm submit={submitHandler} errors={errors} propsName={author} />
             }
         </div>

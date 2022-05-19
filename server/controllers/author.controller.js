@@ -1,7 +1,7 @@
 const { Author } = require('../models/author.model');
 
 module.exports.findAllAuthors = (req, res) => {
-    Author.find({})
+    Author.find({}).sort({"name": 1})
         .then(allAuthors => res.json(allAuthors))
         .catch(err => res.json({ message: 'Something went wrong', error: err }));
 }

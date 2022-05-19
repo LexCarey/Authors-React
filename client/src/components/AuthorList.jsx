@@ -18,7 +18,7 @@ const AuthorList = (props) => {
                 </thead>
                 <tbody>
                     {
-                        list.sort((a, b) => a.name.localeCompare(b.name)).map((entry, i) => 
+                        list.map((entry, i) => 
                             <tr key={i}>
                                 <td style={{color: "purple"}}><h3>{entry.name}</h3></td>
                                 <td><button className='btn btn-success' onClick={() => navigate(`/edit/${entry._id}`)}>Edit</button></td>
