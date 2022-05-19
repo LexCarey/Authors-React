@@ -29,8 +29,8 @@ const Create = () => {
     return (
         <div>
             <h1>Favorite Authors</h1>
-            <Link to="/">Home</Link>
-            <p style={{color: "purple"}}>Add a new author:</p>
+            <h3><Link to="/">Home</Link></h3>
+            <h3 style={{color: "purple"}}>Add a new author:</h3>
             <AuthorForm submit={submitHandler} errors={errors} propsName="" />
         </div>
     )

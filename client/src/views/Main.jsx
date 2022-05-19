@@ -15,8 +15,8 @@ const Main = () => {
     return (
         <div>
             <h1>Favorite Authors</h1>
-            <Link to="/new">Add an author</Link>
-            <p style={{color: "purple"}}>We have quotes by:</p>
+            <h3><Link to="/new">Add an author</Link></h3>
+            <h3 style={{color: "purple"}}>We have quotes by:</h3>
             {Authors.length>0 && <AuthorList list={Authors} updateList={setAuthors} />}
         </div>
     )

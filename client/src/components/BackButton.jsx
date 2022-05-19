@@ -9,7 +9,7 @@ const BackButton = () => {
     }
 
     return (
-        <button onClick={goBack}>Cancel</button>
+        <button type="button" className='btn btn-danger' onClick={goBack}>Cancel</button>
     )
 }
 

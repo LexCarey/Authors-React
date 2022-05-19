@@ -10,12 +10,14 @@ const AuthorForm = (props) => {
         <div>
             {errors.map((err, index) => <p key={index}>{err}</p>)}
             <form onSubmit={(e) => submit(e, name)}>
-                <Input value={name} setOnChange={setName} />
+                <Input value={name} setOnChange={setName} label="Name" />
                 <BackButton />
-                <input type="submit" value="Submit" />
+                <button className='btn btn-primary' type="submit">Submit</button>
             </form>
         </div>
     )
 }
 
 export default AuthorForm
+
+//disabled={name.length<3?true:false}

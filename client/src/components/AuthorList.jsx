@@ -1,24 +1,15 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import DeleteButton from './DeleteButton'
 
 const AuthorList = (props) => {
     const { list, updateList } = props
     const navigate = useNavigate()
 
-    const deleteAuthor = (AuthorId) => {
-        console.log(AuthorId)
-        axios.delete(`http://localhost:8000/api/authors/${AuthorId}`)
-        .then(res => {
-            const updatedList = list.filter((entry) => entry._id !== AuthorId)
-            updateList(updatedList)
-        })
-        .catch(err => console.log(err))
-    }
-
     return (
-        <div>
-            <table style={{margin: "0 auto"}}>
+        <div style={{width: "700px", margin: "0 auto"}}>
+            <table className='table table-striped' style={{margin: "0 auto"}}>
                 <thead>
                     <tr>
                         <th>Authors</th>
@@ -27,11 +18,11 @@ const AuthorList = (props) => {
                 </thead>
                 <tbody>
                     {
-                        list.map((entry, i) => 
+                        list.sort((a, b) => a.name.localeCompare(b.name)).map((entry, i) => 
                             <tr key={i}>
-                                <td style={{color: "purple"}}>{entry.name}</td>
-                                <td><button onClick={() => navigate(`/edit/${entry._id}`)}>Edit</button></td>
-                                <td><button onClick={() => deleteAuthor(entry._id)}>Delete</button></td>
+                                <td style={{color: "purple"}}><h3>{entry.name}</h3></td>
+                                <td><button className='btn btn-success' onClick={() => navigate(`/edit/${entry._id}`)}>Edit</button></td>
+                                <td><DeleteButton id={entry._id} list={list} updateList={updateList} /></td>
                             </tr>
                         )
                     }

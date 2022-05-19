@@ -4,7 +4,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom'
 import AuthorForm from '../components/AuthorForm'
 
 const Update = () => {
-    const [author, setAuthor] = useState("")
+    const [author, setAuthor] = useState()
     const [loaded, setLoaded] = useState(false)
     const [errors, setErrors] = useState([])
     const { id } = useParams()
@@ -13,8 +13,8 @@ const Update = () => {
     useEffect(()=>{
         axios.get(`http://localhost:8000/api/authors/${id}`)
         .then(res => {
-            setAuthor(res.data.name)
-            setLoaded(true)
+                setAuthor(res.data.name)
+                setLoaded(true)
         })
         .catch(err => console.log(err))
     }, [])
@@ -41,11 +41,16 @@ const Update = () => {
     return (
         <div>
             <h1>Favorite Authors</h1>
-            <Link to="/">Home</Link>
-            <p>Edit this Author:</p>
-            {loaded && <AuthorForm submit={submitHandler} errors={errors} propsName={author} />}
+            <h3><Link to="/">Home</Link></h3>
+            <h3 style={{color: "purple"}}>Edit this Author:</h3>
+            {
+                loaded&&
+                <AuthorForm submit={submitHandler} errors={errors} propsName={author} />
+            }
         </div>
     )
 }
 
 export default Update
+
+//<h3>We're sorry, but we could not find the author you are looking for. Would you like to <Link to="/new">add this author</Link> to our database?</h3>
